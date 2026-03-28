@@ -16,15 +16,18 @@ import organizationRouter from './routers/organization.js';
 import anonymousRouter from './routers/Anonymous.js';
 
 // Vercel might have issues with setServers depending on permissions
-try {
-    dns.setServers(['1.1.1.1', '8.8.8.8']);
-} catch (e) {
-    console.warn("DNS setServers failed:", e.message);
-}
+// try {
+//     dns.setServers(['1.1.1.1', '8.8.8.8']);
+// } catch (e) {
+//     console.warn("DNS setServers failed:", e.message);
+// }
 
 const app = express();
 
-app.use(cors({ origin: true, credentials: true }));
+app.use(cors({ 
+    origin: ['https://meeting-mind-frontend-rbky.vercel.app', 'http://localhost:5173', 'http://localhost:3000'], 
+    credentials: true 
+}));
 app.use(express.json());
 app.use(cookieParser());
 
